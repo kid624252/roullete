@@ -1,0 +1,43 @@
+.game-wheel {
+    position: relative;
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    border: 10px solid #fff;
+    overflow: hidden;
+    margin: 20px auto;
+}
+
+.wheel-section {
+    position: absolute;
+    width: 50%;
+    height: 50%;
+    top: 0%;
+    left: 50%;
+    transform-origin: bottom left;
+    /* transform-origin: bottom center; */
+    clip-path: polygon(0 0, 200% 0, 0 200%);
+    /* the above line `polygon(0 0, 100% 0, 100% 100%);` means that the clip-path will be the bottom right triangle of the wheel */
+}
+
+.player-info {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    color: #fff;
+    font-size: 14px;
+    text-align: center;
+}
+
+.bet-total {
+    color: #fff;
+    font-size: 34px;
+    margin-top: 10px;
+    /* with position at the center of the circle */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+}
