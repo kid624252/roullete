@@ -2,9 +2,10 @@
 import React, { useState, useEffect } from 'react';
 import '../styles/Timer.css'; // Import the CSS for styling
 import { endgame } from './web3'; // Import the casino contract instance
+export const [remainingTime, setRemainingTime] = useState(timeLeft);
 
 const Timer = ({ timeLeft }) => {
-    const [remainingTime, setRemainingTime] = useState(timeLeft);
+    // const [remainingTime, setRemainingTime] = useState(timeLeft);
 
     useEffect(() => {
         // Set up a timer to decrease the remaining time

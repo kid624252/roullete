@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import PlayerList from './components/PlayerList'; // Player list component
 import GameWheel from './components/GameWheel';   // Game wheel component
-import Timer from './components/Timer';           // Timer component
+import {Timer, remainingTime} from './components/Timer';           // Timer component
 import { connectWallet, placeBet, getGameState, listenForBetPlacedEvent } from './components/web3'; // Web3 utilities
 
 import './App.css'; // Main CSS styles
@@ -108,14 +108,10 @@ const App = () => {
 
   const startTimer = () => {
     const timerInterval = setInterval(() => {
-      // setTimeLeft((prevTime) => {
-      //   if (prevTime <= 1) {
-      //     clearInterval(timerInterval);
-      //     determineWinner(); // Determine the winner when the timer reaches zero
-      //     return 0;
-      //   }
-      //   return prevTime - 1;
-      // });
+      if (remainingTime<=1) {
+        // clearInterval(timerInterval);
+        determineWinner();
+      } 
     }, 1000); // Countdown every second
   };
 
