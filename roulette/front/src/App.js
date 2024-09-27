@@ -55,6 +55,14 @@ const App = () => {
     };
   }, []);
 
+  const handleConnectWallet = async () => {
+    const account = await connectWallet();
+    if (account) {
+      setAccount(account);
+      setIsConnected(true);
+    }
+  };
+
   const loadGameData = () => {
     // Load players and current round data from your backend or smart contract
     // This is a placeholder for loading data logic
@@ -189,7 +197,7 @@ const App = () => {
       {account ? (
         <p>Connected account: {account}</p>
       ) : (
-        <button onClick={connectWallet}>Connect Wallet</button>
+        <button onClick={handleConnectWallet}>Connect Wallet</button>
       )}
       {winner && <div className="winner-section">Winner: {winner}</div>}
     </div>

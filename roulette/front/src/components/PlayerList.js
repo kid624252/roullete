@@ -16,11 +16,11 @@ const PlayerList = ({ players }) => {
                             {/* player.color */}
                             {player.player.substring(0, 2).toUpperCase()}
                         </span>
-                        <span className="player-name">{player.player.substring(0, 5)}</span>
+                        <span className="player-name" style={{ marginRight: '10px' }}>{player.player.substring(0, 5)}</span>
                         {/* <span className="player-points">{player.points} Pts</span> */}
-                        <span className="player-points">{25} Pts</span>
+                        <span className="player-points" style={{ marginRight: '10px' }}>{100/players.length} Pts</span>
                         {/* <span className="player-share">{player.share} ETH</span> */}
-                        <span className="player-share">{Number(player.amount/1e18).toFixed(3)} ETH</span>
+                        <span className="player-share" style={{ marginRight: '10px' }}>{Number(player.amount/1e18).toFixed(3)} ETH</span>
 
                     </li>
                 ))}
