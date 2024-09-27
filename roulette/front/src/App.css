@@ -1,0 +1,163 @@
+/* App.css */
+
+/* General styling for the entire app */
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #f9f5f5;
+  /* Dark background */
+  color: #0e0e0e;
+  /* White text */
+  font-family: 'Arial', sans-serif;
+  /* Font style */
+}
+
+.app {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  padding: 20px;
+}
+
+.app-header {
+  width: 100%;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.app-header h1 {
+  font-size: 2.5rem;
+  color: #0e0e0e;
+  margin: 0;
+}
+
+/* Container for the game elements */
+.game-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: flex-start;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #1a1a1a;
+  border-radius: 16px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Section for the betting area and timer */
+.game-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  width: 300px;
+  background-color: #2b2b2b;
+  border-radius: 16px;
+  padding: 20px;
+  margin-left: 20px;
+  text-align: center;
+}
+
+.betting-section {
+  margin-top: 20px;
+  padding: 10px;
+  background-color: #333;
+  border-radius: 8px;
+  width: 100%;
+}
+
+.betting-section h2 {
+  margin: 0;
+  font-size: 1.5rem;
+  color: #fff;
+}
+
+.betting-section p {
+  margin: 10px 0;
+  color: #bbb;
+}
+
+.connect-button {
+  padding: 10px 20px;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 1rem;
+  margin-top: 20px;
+}
+
+.connect-button:hover {
+  background-color: #45a049;
+}
+
+/* Utility class for aligning items */
+.flex-column {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.flex-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+/* For responsiveness */
+@media screen and (max-width: 768px) {
+  .game-container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .game-info {
+    margin: 20px 0;
+  }
+}
+
+/* .App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+} */
