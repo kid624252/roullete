@@ -3,7 +3,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import PlayerList from './components/PlayerList'; // Player list component
 import GameWheel from './components/GameWheel';   // Game wheel component
 import Timer from './components/Timer';           // Timer component
-import { connectWallet, placeBet, getGameState, listenForBetPlacedEvent, endgame, listenForAccountChanges, newgame} from './components/web3'; // Web3 utilities
+import { connectWallet, placeBet, getGameState, listenForBetPlacedEvent, endgame, listenForAccountChanges, newgame } from './components/web3'; // Web3 utilities
 
 import './App.css'; // Main CSS styles
 
@@ -17,6 +17,7 @@ const App = () => {
   const [winner, setWinner] = useState(null); // The winner of the round
   const [timeLeft, setTimeLeft] = useState(60); // Timer countdown (60 seconds)
   const [gameState, setGameState] = useState(null);
+  const [betAmount, setBetAmount] = useState(0);
   const timerRef = useRef(null); // Reference to store the timer interval
   const isDeterminingWinner = useRef(false); // Reference to prevent multiple calls to determineWinner
 
@@ -55,23 +56,28 @@ const App = () => {
   }, []);
 
   const loadGameData = () => {
-        // Load players and current round data from your backend or smart contract
-        // This is a placeholder for loading data logic
-        setPlayers([
-          { player: 'A57388', amount: 500 },
-          { player: 'MercyKiller88', amount: 500 },
-          { player: 'eEaF71', amount: 500 },
-          { player: '2E17B5', amount: 500 },
-        ]);
-        setCurrentRound({
-          totalPool: 0.04,
-          prize: 91.45
-        });
-      };
+    // Load players and current round data from your backend or smart contract
+    // This is a placeholder for loading data logic
+    setPlayers([
+      { player: 'A57388', amount: 500 },
+      { player: 'MercyKiller88', amount: 500 },
+      { player: 'eEaF71', amount: 500 },
+      { player: '2E17B5', amount: 500 },
+    ]);
+    setCurrentRound({
+      totalPool: 0.04,
+      prize: 91.45
+    });
+  };
 
-  const handlePlaceBet = async (betAmount) => {
+  const handlePlaceBet = async () => {
     if (!account) {
       alert('Please connect your wallet first.');
+      return;
+    }
+
+    if (!betAmount || isNaN(betAmount) || betAmount <= 0) {
+      alert('Please enter a valid bet amount.');
       return;
     }
 
@@ -89,8 +95,8 @@ const App = () => {
     setPlayers(gameState.players);
     setTotalBet(gameState.totalBet);
     setCurrentRound({
-      totalPool: gameState.totalBet/1e18,
-      prize: gameState.totalBet/1e18*2659
+      totalPool: gameState.totalBet / 1e18,
+      prize: gameState.totalBet / 1e18 * 2659
     });
   };
 
@@ -117,9 +123,8 @@ const App = () => {
 
     try {
       const check = await getGameState();
-      console.log("state:",check.totalBet, check.players)
-      if(check.players != 0)
-      {
+      console.log("state:", check.totalBet, check.players)
+      if (check.players != 0) {
         console.log("Time to end!");
         await endgame();
         const gameState = await getGameState(); // Assuming contract returns winner after round ends
@@ -161,7 +166,16 @@ const App = () => {
           <Timer timeLeft={timeLeft} />
           <div className="betting-section">
             <h2>Round {currentRound?.roundNumber || 'Loading...'}</h2>
-            <button onClick={() => handlePlaceBet(0.01)}>Place Bet (0.01 ETH)</button>
+            {/* <button onClick={() => handlePlaceBet(0.01)}>Place Bet (0.01 ETH)</button> */}
+            <input
+              type="number"
+              value={betAmount}
+              onChange={(e) => setBetAmount(e.target.value)}
+              placeholder="Enter bet amount (ETH)"
+              step="0.01"
+              style={{ textAlign: 'right', width: '50px', marginRight: '10px' }}
+            />
+            <button onClick={handlePlaceBet}>Place Bet(ETH)</button>
             <p>Total Pool: {currentRound?.totalPool} ETH</p>
             <p>Prize: ${currentRound?.prize}</p>
           </div>
